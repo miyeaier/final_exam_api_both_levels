@@ -8,4 +8,8 @@ class Api::ArticlesController < ApplicationController
     article = Article.find(params[:id])
     render json: { article: article }
   end
+
+  def create
+    comment = Comment.all 
+    render json: { comment: comment } status: 201
 end
