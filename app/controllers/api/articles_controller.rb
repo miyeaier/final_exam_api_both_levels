@@ -11,5 +11,6 @@ class Api::ArticlesController < ApplicationController
 
   def create
     comment = Comment.all 
-    render json: { comment: comment } status: 201
+    render json: { comment: comment }, status: 201
+  end
 end

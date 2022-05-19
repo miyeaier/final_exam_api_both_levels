@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :comment do
-    body { "MyString" }
+    body { "I can pass this test" }
   end
 end

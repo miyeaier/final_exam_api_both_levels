@@ -7,7 +7,7 @@ RSpec.describe 'POST /api/articles', type: :request do
     post"/api/articles",params:{
       commeit:{body:"I can pass this test"},
     }
-    @commeit =Commeit.last
+    @comment =Comment.last
   end 
 
   it "is_expected.to have_http_status 201" do
@@ -15,10 +15,10 @@ RSpec.describe 'POST /api/articles', type: :request do
   end
 
   it 'is expected to create instance of an Commeit' do 
-    expect(@commeit).not_to be nil
+    expect(@comment).not_to be nil
   end 
   
   it "is expected to have a body" do
-    expect(@commeit.body).to eq "It can pass this test"
+    expect(@comment.body).to eq "I can pass this test"
   end
 end
