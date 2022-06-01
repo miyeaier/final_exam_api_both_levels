@@ -1,24 +1,17 @@
-RSpec.describe 'POST /api/articles', type: :request do
-  let!(:comment){ create(:comment) }
-  
-  subject{ reponse }
-  
-  before do 
-    post"/api/articles",params:{
-      commeit:{body:"I can pass this test"},
-    }
-    @comment =Comment.last
-  end 
+RSpec.describe 'POST /api/comments', type: :request do
+  let(:article) { create(:article) }
 
-  it "is_expected.to have_http_status 201" do
-    expect(response).to have_http_status :created
+  before do
+    post "/api/articles/#{article.id}/comments", params: {
+      comment: { body: 'This is my Comment' }
+    }
   end
 
-  it 'is expected to create instance of an Commeit' do 
-    expect(@comment).not_to be nil
-  end 
-  
-  it "is expected to have a body" do
-    expect(@comment.body).to eq "I can pass this test"
+  subject { response }
+
+  it { is_expected.to have_http_status :created }
+
+  it 'is expected to return a message with the new comment' do
+    expect(response_json['comment']['body']).to eq 'This is my Comment'
   end
 end
